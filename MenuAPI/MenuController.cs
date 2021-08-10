@@ -49,6 +49,7 @@ namespace MenuAPI
         public static float ScreenWidth => 1080 * AspectRatio;
         public static float ScreenHeight => 1080;
         public static bool DisableMenuButtons { get; set; } = false;
+        public static bool DisableMenuToggleKey { get; set; } = false;
 #if FIVEM
         public static bool AreMenuButtonsEnabled => IsAnyMenuOpen() && !Game.IsPaused && CitizenFX.Core.UI.Screen.Fading.IsFadedIn && !IsPlayerSwitchInProgress() && !DisableMenuButtons && !Game.Player.IsDead;
 #endif
@@ -476,7 +477,7 @@ namespace MenuAPI
 #if FIVEM
         private async Task ProcessToggleMenuButtonFiveM()
         {
-            if (!Game.IsPaused && !IsPauseMenuRestarting() && IsScreenFadedIn() && !IsPlayerSwitchInProgress() && !Game.Player.IsDead && !DisableMenuButtons)
+            if (!Game.IsPaused && !IsPauseMenuRestarting() && IsScreenFadedIn() && !IsPlayerSwitchInProgress() && !Game.Player.IsDead && !DisableMenuButtons && !DisableMenuToggleKey)
             {
                 if (IsAnyMenuOpen())
                 {
