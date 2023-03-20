@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net452</TargetFramework>
     <DebugType>embedded</DebugType>
@@ -18,6 +18,7 @@
     <PackageTags Condition="'$(Configuration)' == 'Debug FiveM' Or '$(Configuration)' == 'Release FiveM'">FiveM MenuAPI</PackageTags>
     <PackageTags Condition="'$(Configuration)' == 'Debug RedM' Or '$(Configuration)' == 'Release RedM'">RedM MenuAPI</PackageTags>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release FiveM'">
@@ -34,6 +35,10 @@
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug RedM'">
     <DefineConstants>REDM;DEBUG</DefineConstants>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)' == 'Release FiveM' Or '$(Configuration)' == 'Release RedM'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
