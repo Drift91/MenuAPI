@@ -5,6 +5,7 @@
     <DebugType>embedded</DebugType>
     <TargetName>$(AssemblyName).net</TargetName>
     <Configurations>Release RedM;Release FiveM;Debug RedM;Debug FiveM</Configurations>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Debug FiveM' Or '$(Configuration)' == 'Release FiveM'">
