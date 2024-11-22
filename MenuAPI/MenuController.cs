@@ -1,12 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
-using static CitizenFX.Core.Native.Function;
-using static CitizenFX.Core.Native.Hash;
+using static CitizenFX.FiveM.Native.Natives;
+using Control = CitizenFX.FiveM.Control;
+using Game = CitizenFX.FiveM.Game;
+using InputMode = CitizenFX.FiveM.InputMode;
 
 namespace MenuAPI
 {
@@ -53,7 +53,7 @@ namespace MenuAPI
         public static float ScreenHeight => 1080;
         public static bool DisableMenuButtons { get; set; } = false;
 #if FIVEM
-        public static bool AreMenuButtonsEnabled => IsAnyMenuOpen() && !Game.IsPaused && CitizenFX.Core.UI.Screen.Fading.IsFadedIn && !IsPlayerSwitchInProgress() && !DisableMenuButtons && !Game.Player.IsDead;
+        public static bool AreMenuButtonsEnabled => IsAnyMenuOpen() && !Game.IsPaused && CitizenFX.FiveM.GUI.Screen.Fading.IsFadedIn && !IsPlayerSwitchInProgress() && !DisableMenuButtons && !Game.Player.IsDead;
 #endif
 #if REDM
         public static bool AreMenuButtonsEnabled =>
@@ -286,7 +286,7 @@ namespace MenuAPI
         /// Process the select & go back/cancel buttons.
         /// </summary>
         /// <returns></returns>
-        private async Task ProcessMainButtons()
+        private async Coroutine ProcessMainButtons()
         {
             if (IsAnyMenuOpen())
             {
@@ -469,7 +469,7 @@ namespace MenuAPI
         /// Processes the menu toggle button to check if the menu should open or close.
         /// </summary>
         /// <returns></returns>
-        private async Task ProcessToggleMenuButton()
+        private async Coroutine ProcessToggleMenuButton()
         {
 
 #if FIVEM
@@ -560,7 +560,7 @@ namespace MenuAPI
         /// Process left/right/up/down buttons (also holding down buttons will speed up after 3 iterations)
         /// </summary>
         /// <returns></returns>
-        private async Task ProcessDirectionalButtons()
+        private async Coroutine ProcessDirectionalButtons()
         {
             // Return if the buttons are not currently enabled.
             if (!AreMenuButtonsEnabled)
@@ -770,7 +770,7 @@ namespace MenuAPI
             }
         }
 
-        private async Task MenuButtonsDisableChecks()
+        private async Coroutine MenuButtonsDisableChecks()
         {
 
             bool isInputVisible() => UpdateOnscreenKeyboard() == 0;
@@ -950,7 +950,7 @@ namespace MenuAPI
         /// Draws all the menus that are visible on the screen.
         /// </summary>
         /// <returns></returns>
-        private static async Task ProcessMenus()
+        private static async Coroutine ProcessMenus()
         {
 
             if (Menus.Count > 0 &&
@@ -1005,7 +1005,7 @@ namespace MenuAPI
         }
 
 #if FIVEM
-        internal static async Task DrawInstructionalButtons()
+        internal static async Coroutine DrawInstructionalButtons()
         {
             if (!Game.IsPaused && !Game.Player.IsDead && IsScreenFadedIn() && !IsPlayerSwitchInProgress() && !IsWarningMessageActive() && UpdateOnscreenKeyboard() != 0)
             {
@@ -1032,7 +1032,7 @@ namespace MenuAPI
 
                         BeginScaleformMovieMethod(_scale, "SET_DATA_SLOT");
                         ScaleformMovieMethodAddParamInt(i);
-                        string buttonName = GetControlInstructionalButton(0, (int)control, 1);
+                        string buttonName = GetControlInstructionalButton(0, (int)control, true);
                         PushScaleformMovieMethodParameterString(buttonName);
                         PushScaleformMovieMethodParameterString(text);
                         EndScaleformMovieMethod();

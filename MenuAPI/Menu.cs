@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using CitizenFX.Core;
-using static CitizenFX.Core.Native.API;
-using static CitizenFX.Core.Native.Function;
-using static CitizenFX.Core.Native.Hash;
+using static CitizenFX.FiveM.Native.Natives;
+using Control = CitizenFX.FiveM.Control;
+using Game = CitizenFX.FiveM.Game;
 
 namespace MenuAPI
 {
@@ -1722,7 +1721,7 @@ namespace MenuAPI
                         SetTextScale(textSize, textSize);
                         SetTextJustification(1);
                         string text = currentMenuItem.Description;
-                        foreach (string s in CitizenFX.Core.UI.Screen.StringToArray(text))
+                        foreach (string s in CitizenFX.FiveM.GUI.Text.SplitString(text))
                         {
                             AddTextComponentSubstringPlayerName(s);
                         }
@@ -1750,7 +1749,7 @@ namespace MenuAPI
                         SetTextJustification(1);
                         SetTextFont(font);
                         int lineCount;
-                        foreach (string s in CitizenFX.Core.UI.Screen.StringToArray(text))
+                        foreach (string s in CitizenFX.FiveM.GUI.Text.SplitString(text))
                         {
                             AddTextComponentSubstringPlayerName(s);
                         }
