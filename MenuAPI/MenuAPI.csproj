@@ -36,6 +36,14 @@
     <DefineConstants>REDM;DEBUG</DefineConstants>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release FiveM|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release RedM|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Include="..\shared\RedM\Controls.cs" Link="Controls.cs" />
   </ItemGroup>
