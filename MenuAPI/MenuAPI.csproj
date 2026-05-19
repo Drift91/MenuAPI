@@ -17,6 +17,7 @@
     <RepositoryUrl>https://github.com/tomgrobbe/menuapi/</RepositoryUrl>
     <PackageTags Condition="'$(Configuration)' == 'Debug FiveM' Or '$(Configuration)' == 'Release FiveM'">FiveM MenuAPI</PackageTags>
     <PackageTags Condition="'$(Configuration)' == 'Debug RedM' Or '$(Configuration)' == 'Release RedM'">RedM MenuAPI</PackageTags>
+    <PlatformTarget>x64</PlatformTarget>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)' == 'Release FiveM'">
